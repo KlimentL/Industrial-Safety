@@ -1,0 +1,73 @@
+# arrange 
+ library(tidyverse)
+avg_income <- us_rent_income %>% arrange(desc(estimate))
+#group_by 
+e_cars <- read.csv("e_cars.csv")
+
+e_cars_state <- e_cars %>% filter(State == "WA", City == "Seattle", Make == "TESLA") %>%
+  group_by(State) 
+
+
+
+
+#subset()
+
+e_cars %>% filter(City == "Seattle") %>% group_by(City) %>% subset(Electric.Range >= 200 & Model.Year > 2018) %>% summarise(City, Electric.Range, Model.Year) 
+
+
+#ifelse (short)
+x <- c(1237, 45768, 8424, 1295, 9521, 8530, 5420, 5092)
+y <- c(1923, 53944, 4923, 4239, 4320, 5894, 8620, 9534)
+
+ifelse(x > y, "yes", "no")
+
+#ifstatements
+
+e_range <- (e_cars$Electric.Range)
+
+if(e_range < 100){
+  print("Good")
+}else{
+  print("Bad Filtration")
+}
+
+
+
+# data.frame ggplot()
+
+work_result <- data.frame(
+  work_id = c(101, 106, 205, 208, 326, 356),
+  work = c("HR", "HR", "Management", "Management", "Production", "Production"),
+  salary = c(120000, 110000, 90000, 85000, 650000, 65000),
+  hr_week = c(45,40,40,40,35,35),
+  last_promotion_yr = c(2016,2018,2020,2019,NA,NA)
+)
+
+work_result %>% top_n(3,salary) %>% 
+    ggplot(aes(work, salary)) +
+  geom_boxplot()+
+      coord_flip()+ 
+      theme_bw() +
+      labs(title = "Top 3 by salary")
+
+#ggplot
+mslabs %>% 
+  drop_na(vore) %>% 
+  ggplot(aes(fct_infreq(vore))) +
+  geom_bar(fill = "blue") +
+  coord_flip()+ 
+  theme_bw()+
+  labs(x = "Which?", y = NULL, title = "NUmber of observations")
+
+
+# add different 
+
+
+# Histogram on a Continuous (Numeric) Variable
+g <- ggplot(mpg, aes(displ)) + scale_fill_brewer(palette = "Spectral")
+
+g + geom_histogram(aes(fill=class), 
+                   binwidth = .1, 
+                   col="blue", 
+                   size=.1) +  
+  labs(title="Engine Displacement")  
