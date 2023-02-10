@@ -49,5 +49,7 @@ predicted.data$rank <- 1:nrow(predicted.data)
 #Plotting with ggplot()
 ggplot(data=predicted.data, aes(x=rank, y=probability.of.Accident.Level))+
   geom_point(aes(color=Accident.Level), alpha=1, shape=4, stroke=2)+
+  
+ #Probability of Accident Level by SEX
   xlab("Index") +
   ylab("Probability of Accident Level")
