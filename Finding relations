@@ -36,20 +36,18 @@ ll.proposed <- logistic$deviance/-2
 
 #Creating dataframe with probability of Accident Level in different Industry.Sectors
 predicted.data <-data.frame(
-  probability.of.Accident.Level=df$Industry.Sector,
+  Industy_Sector=df$Industry.Sector,
   Accident.Level=df$Accident.Level
 )
 
 predicted <- predicted.data[
-  order(predicted.data$probability.of.Accident.Level, decreasing=FALSE),
+  order(predicted.data$Industry_Sector, decreasing=FALSE),
 ]
 
 predicted.data$rank <- 1:nrow(predicted.data)
 
 #Plotting with ggplot()
-ggplot(data=predicted.data, aes(x=rank, y=probability.of.Accident.Level))+
+ggplot(data=predicted.data, aes(x=rank, y=Industry_Sector))+
   geom_point(aes(color=Accident.Level), alpha=1, shape=4, stroke=2)+
   
- #Probability of Accident Level by SEX
-  xlab("Index") +
-  ylab("Probability of Accident Level")
+
