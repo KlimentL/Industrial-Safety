@@ -1,0 +1,34 @@
+#SQL
+
+#Overview
+SELECT * FROM industrial_csv;
+
+#Renaming columns
+ALTER TABLE `Industrial_safety`.`industrial_csv` 
+CHANGE COLUMN `Industry Sector` `Industry_Sector` TEXT NULL DEFAULT NULL ,
+CHANGE COLUMN `Accident Level` `Accident_Level` TEXT NULL DEFAULT NULL ,
+CHANGE COLUMN `Potential Accident Level` `Potential_Accident Level` TEXT NULL DEFAULT NULL ,
+CHANGE COLUMN `Employee ou Terceiro` `Employee_ou Terceiro` TEXT NULL DEFAULT NULL ,
+CHANGE COLUMN `Risco Critico` `Risco_Critico` TEXT NULL DEFAULT NULL ;
+
+
+
+SELECT Date, COUNT(Accident_Level)
+FROM industrial_csv
+WHERE Date BETWEEN '2016-02-01 00:00:00' AND '2016-03-01 00:00:00'
+GROUP BY Date;
+
+SELECT * FROM industrial_csv
+WHERE Date BETWEEN '2016-02-01 00:00:00' AND '2016-03-01 00:00:00';
+
+SELECT * FROM industrial_csv
+WHERE Date = '2016-02-26 00:00:00' AND Industry_Sector = 'Metals' ;
+
+
+SELECT Date, Industry_Sector, COUNT(Accident_Level)
+FROM industrial_csv
+WHERE Industry_Sector = 'Mining'
+GROUP BY Date;
+
+SELECT * FROM industrial_csv
+WHERE Industry_Sector = 'Mining';
