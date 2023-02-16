@@ -11,8 +11,10 @@ CHANGE COLUMN `Potential Accident Level` `Potential_Accident Level` TEXT NULL DE
 CHANGE COLUMN `Employee ou Terceiro` `Employee_ou Terceiro` TEXT NULL DEFAULT NULL ,
 CHANGE COLUMN `Risco Critico` `Risco_Critico` TEXT NULL DEFAULT NULL ;
 
+#PLOT
+https://public.tableau.com/app/profile/kliment.liubcsenko/viz/AccidentReportsAnalysis/Dashboard1
 
-
+#Finding anomality on February
 SELECT Date, COUNT(Accident_Level)
 FROM industrial_csv
 WHERE Date BETWEEN '2016-02-01 00:00:00' AND '2016-03-01 00:00:00'
@@ -21,10 +23,11 @@ GROUP BY Date;
 SELECT * FROM industrial_csv
 WHERE Date BETWEEN '2016-02-01 00:00:00' AND '2016-03-01 00:00:00';
 
+#We see that anomalality on February 2nd was due to ThirdParty Employee working that day
 SELECT * FROM industrial_csv
 WHERE Date = '2016-02-26 00:00:00' AND Industry_Sector = 'Metals' ;
 
-
+#We don't see anything unusual for Mining Industry Sector
 SELECT Date, Industry_Sector, COUNT(Accident_Level)
 FROM industrial_csv
 WHERE Industry_Sector = 'Mining'
